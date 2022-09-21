@@ -4,6 +4,7 @@
 declare -a commands=(
     "yarn build"
     "npx cypress run"
+    "npx eslint"
     "yarn test --watchAll=false"
 )
 declare -i progress=1
@@ -14,7 +15,6 @@ NC='\033[0m'
 for i in "${!commands[@]}"
 do  
     echo -e "\n${RED}Pre Commit Progress : [""${progress}/${#commands[@]}""]\n${NC}"
-    echo "${commands[$i]}"
+    eval "${commands[$i]}"
     ((progress++))
 done
-

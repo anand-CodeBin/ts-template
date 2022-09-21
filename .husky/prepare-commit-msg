@@ -1,5 +1,4 @@
 #!/bin/sh
 . "$(dirname $0)/_/husky.sh"
 
-# chmod < /dev/console && npx git-cz --hook || true 
-chmod +x ./.husky/cx.sh
+# exec < /dev/console && npx git-cz --hook || true 
