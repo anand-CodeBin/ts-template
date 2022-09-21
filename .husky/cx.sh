@@ -1,0 +1,1 @@
+exec npx git-cz --hook
