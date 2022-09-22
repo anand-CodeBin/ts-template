@@ -5,17 +5,18 @@ declare -a commands=(
     "yarn build"
     "npx cypress run"
     "npx eslint --fix ./src/**/*.{tsx,ts}"
+    "npx stylelint src/**/*.css"
     "yarn test --watchAll=false"
 )
 declare -i progress=1
 
-RED='\033[0;36m'
+BLUE='\033[0;36m'
 GRAY='\033[1;30m'
 NC='\033[0m'
 
 for i in "${!commands[@]}"
 do  
-    echo -e "\n${RED}Running Pre Commit test : [""${progress}/${#commands[@]}""]${NC}"
+    echo -e "\n${BLUE}Running Pre Commit test : [""${progress}/${#commands[@]}""]${NC}"
     echo -e "${GRAY}${commands[$i]}\n${NC}"
     eval "${commands[$i]}"
     ((progress++))

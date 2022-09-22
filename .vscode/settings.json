@@ -1,8 +1,8 @@
 {
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "html",
-    "typescriptreact"
-  ]
+  "eslint.validate": ["javascript", "javascriptreact", "html", "typescriptreact"],
+  "css.validate": false,
+  "scss.validate": false,
+  "stylelint.validate": ["css", "scss"],
+  "eslint.autoFixOnSave": false,
+  "editor.formatOnSave": true
 }
