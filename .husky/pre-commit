@@ -13,11 +13,13 @@ declare -i progress=1
 BLUE='\033[0;36m'
 GRAY='\033[1;30m'
 NC='\033[0m'
+BGreen='\033[1;32m'
 
 for i in "${!commands[@]}"
 do  
     echo -e "\n${BLUE}Running Pre Commit test : [""${progress}/${#commands[@]}""]${NC}"
     echo -e "${GRAY}${commands[$i]}\n${NC}"
     eval "${commands[$i]}"
+    echo -e "${BGreen}Passed [""${progress}/${#commands[@]}""]${NC}\n"
     ((progress++))
 done
