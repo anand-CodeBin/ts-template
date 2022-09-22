@@ -6,11 +6,13 @@
     yarn commit
 ```
 
-This will run `git add -A` and then perform the required tests before adding a commit.
-
----
-
 **NOTE :**
-Do not use git add or git commit while adding a commit to this repo.
+
+> Do not use `git add` or `git commit` while adding a commit to this repo.
 
 ---
+
+Make sure you have following packages **Globally** installed.
+
+- [commitizen](https://www.npmjs.com/package/commitizen)
+- [yarn](https://www.npmjs.com/package/yarn)
