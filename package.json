@@ -25,8 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
-    "commit": "cz",
-    "gitadd": "git add -A"
+    "commit": "git add -A && cz"
   },
   "eslintConfig": {
     "extends": [
