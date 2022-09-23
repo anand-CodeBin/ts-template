@@ -16,3 +16,9 @@ Make sure you have following packages **Globally** installed.
 
 - [commitizen](https://www.npmjs.com/package/commitizen)
 - [yarn](https://www.npmjs.com/package/yarn)
+
+> To install these packages globally run
+>
+> ```
+> npm i -g yarn commitizen
+> ```
