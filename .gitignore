@@ -15,8 +15,8 @@
 /cypress/videos
 /cypress/screenshots
 
-# Logs
-test-logs.txt
+# Pre commit test logs
+pre-commit-test-logs.txt
 
 # misc
 .DS_Store
