@@ -34,7 +34,9 @@ do
     echo "$ ${commands[$i]}" >> $logFileName
     eval "${commands[$i]}" | tee -a $logFileName || { echo -e "\n${RED}${commands[$i]} Failed!\nSee ${logFileName} for details.\n${NC}"; exit 212; }
     echo -e "${BGreen}Passed [""${progress}/${#commands[@]}""]${NC}\n"
+    echo "" >> $logFileName
     echo "Test Passed [${commands[$i]}]" >> $logFileName
+    echo "" >> $logFileName
 
     ((progress++))
 done
