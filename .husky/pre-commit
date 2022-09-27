@@ -29,7 +29,8 @@ BGreen='\033[1;32m'
 for i in "${!commands[@]}"
 do  
     echo -e "\n${BLUE}Running Pre Commit test : [""${progress}/${#commands[@]}""]${NC}"
-    echo -e "${GRAY}${commands[$i]}\n${NC}" | tee -a $logFileName
+    echo -e "${GRAY}${commands[$i]}\n${NC}"
+    echo "Running ${commands[$i]}" >> $logFileName
     eval "${commands[$i]}" | tee -a $logFileName || { echo -e "\n${RED}${commands[$i]} Failed!\nSee ${logFileName} for details.\n${NC}"; exit 212; }
     echo -e "${BGreen}Passed [""${progress}/${#commands[@]}""]${NC}\n"
     ((progress++))
