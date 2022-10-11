@@ -18,13 +18,22 @@ GRAY='\033[1;30m'
 NC='\033[0m'
 BGreen='\033[1;32m'
 
+NAME=$(git config -l | grep 'user.name' | sed 's/user.name=//')
+EMAIL=$(git config -l | grep 'user.email' | sed 's/user.email=//')
+
+
+
+echo You are commiting with the following config
+echo 
+echo -e "User  : ${RED} ${NAME} ${NC}" | tee -a $logFileName
+echo -e "Email : ${RED} ${EMAIL} ${NC}" | tee -a $logFileName
 set -o pipefail
-echo "" | tee $logFileName
-echo "--------------------------" | tee -a $logFileName
-echo "Starting Pre Commit Tests." | tee -a $logFileName
-echo `date +"%A, %Y-%m-%d %T"` | tee -a $logFileName
-echo "--------------------------" | tee -a $logFileName
-echo "" | tee -a $logFileName
+echo "" > $logFileName
+echo "--------------------------" > $logFileName
+echo "Starting Pre Commit Tests." > $logFileName
+echo `date +"%A, %Y-%m-%d %T"` > $logFileName
+echo "--------------------------" > $logFileName
+echo "" > $logFileName
 
 for i in "${!commands[@]}"
 do  
