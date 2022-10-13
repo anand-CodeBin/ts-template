@@ -23,17 +23,21 @@ EMAIL=$(git config -l | grep 'user.email' | sed 's/user.email=//')
 
 echo "" > $logFileName
 echo ""
+echo `date +"%A, %Y-%m-%d %T"` >> $logFileName
+echo "" >> $logFileName
 echo You are commiting with the following config
 echo 
-echo -e "User  : ${RED} ${NAME} ${NC}" | tee -a $logFileName
-echo -e "Email : ${RED} ${EMAIL} ${NC}" | tee -a $logFileName
+echo -e "User  : ${RED} ${NAME} ${NC}" 
+echo -e "Email : ${RED} ${EMAIL} ${NC}"
+echo "Commiting with following configuration" >> $logFileName
+echo "--------------------------------------" >> $logFileName
+echo -e "User  : ${NAME}" >> $logFileName
+echo -e "Email : ${EMAIL}" >> $logFileName
 set -o pipefail
 echo "" >> $logFileName
-echo "--------------------------" >> $logFileName
-echo "Starting Pre Commit Tests." >> $logFileName
-echo `date +"%A, %Y-%m-%d %T"` >> $logFileName
-echo "--------------------------" >> $logFileName
 echo "" >> $logFileName
+echo "Starting Pre Commit Tests." >> $logFileName
+echo "--------------------------" >> $logFileName
 
 for i in "${!commands[@]}"
 do  
