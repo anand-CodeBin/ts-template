@@ -17,6 +17,7 @@
 
 # Pre commit test logs
 pre-commit-test-logs.txt
+pre-commit-test-logs.html
 
 # misc
 .DS_Store

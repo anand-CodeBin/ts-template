@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-logFileName="pre-commit-test-logs.txt"
+logFileName="pre-commit-test-logs.html"
 
 declare -a commands=(
     "yarn build"
@@ -21,22 +21,41 @@ BGreen='\033[1;32m'
 NAME=$(git config -l | grep 'user.name' | sed 's/user.name=//')
 EMAIL=$(git config -l | grep 'user.email' | sed 's/user.email=//')
 
-echo "" > $logFileName
-echo ""
+echo "<style>
+  html,
+  body {
+    background-color: rgb(35, 35, 35);
+    color: white;
+  }
+  .log {
+    font-family: monospace;
+  }
+  .info {
+    font-family: "Courier New", Courier, monospace;
+  }
+  .imp {
+    font-family: "Courier New", Courier, monospace;
+    font-weight: 600;
+    color: orange;
+  }
+</style>" > $logFileName
+{
+echo "<h2>" >> $logFileName
 echo `date +"%A, %Y-%m-%d %T"` >> $logFileName
+echo "</h2>" >> $logFileName
 echo "" >> $logFileName
 echo You are commiting with the following config
 echo 
 echo -e "User  : ${RED} ${NAME} ${NC}" 
 echo -e "Email : ${RED} ${EMAIL} ${NC}"
-echo "Commiting with following configuration" >> $logFileName
+echo "<p class='info'>Commiting with following configuration</p>" >> $logFileName
 echo "--------------------------------------" >> $logFileName
-echo -e "User  : ${NAME}" >> $logFileName
-echo -e "Email : ${EMAIL}" >> $logFileName
+echo -e "<p>User  : <span class='imp'>${NAME}</span></p>" >> $logFileName
+echo -e "<p>Email : <span class='imp'>${EMAIL}</span></p>" >> $logFileName
 set -o pipefail
 echo "" >> $logFileName
 echo "" >> $logFileName
-echo "Starting Pre Commit Tests." >> $logFileName
+echo "<p class='info'>Starting Pre Commit Tests.</p>" >> $logFileName
 echo "--------------------------" >> $logFileName
 
 for i in "${!commands[@]}"
@@ -45,7 +64,7 @@ do
     echo -e "${GRAY}${commands[$i]}\n${NC}"
     echo "Running" >> $logFileName
     echo "$ ${commands[$i]}" >> $logFileName
-    eval "${commands[$i]}" | tee -a $logFileName || { echo -e "\n${RED}${commands[$i]} Failed!\nSee ${logFileName} for details.\n${NC}"; exit 212; }
+    eval "${commands[$i]}"  # | tee -a $logFileName || { echo -e "\n${RED}${commands[$i]} Failed!\nSee ${logFileName} for details.\n${NC}"; exit 212; }
     echo -e "${BGreen}Passed [""${progress}/${#commands[@]}""]${NC}\n"
     echo "" >> $logFileName
     echo "Test Passed [${commands[$i]}]" >> $logFileName
@@ -54,3 +73,4 @@ do
     ((progress++))
 done
 
+} | ./htmlMaker.sh > $logFileName
