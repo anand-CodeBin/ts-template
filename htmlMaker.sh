@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 gawk --version >/dev/null || exit 1
 
 if [ "$1" = "--version" ]; then
